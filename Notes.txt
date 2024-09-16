@@ -1,0 +1,5 @@
+##Angular Commands 
+    1. To create a lazy loading module.
+        ng generate module core/chat --routing
+    2. To create a component inside a module.
+        ng g c ./core/folder-name/component-name --module=./core/module-name
