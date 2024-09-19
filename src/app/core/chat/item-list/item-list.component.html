@@ -1,1 +1,28 @@
-<p>item-list works!</p>
+<div class="item-list-container">
+    <!-- Header Section -->
+    <div class="item-list-header">
+      <h3>{{itemType}}</h3>
+    </div>
+  
+    <!-- Chat List -->
+    <ul class="item-list" *ngIf="itemType === 'chat'">
+      <li *ngFor="let chat of chats" class="item-list-entry">
+        <div class="item-content">
+          <button (click)="selectChat(chat.name)" [class.active]="selectedChat === chat.name" class="chat-item">
+            <span class="item-name">{{ chat.name }}</span>
+            <span class="item-last-message">{{ chat.lastMessage }}</span>
+          </button> 
+        </div>
+      </li>
+    </ul>
+  
+    <!-- Teams List -->
+    <ul class="item-list" *ngIf="itemType === 'teams'">
+      <li *ngFor="let team of teams" class="item-list-entry">
+        <div class="item-content">
+          <span class="item-name">{{ team.name }}</span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  

@@ -1,39 +1,41 @@
 
 <div class="login-container">
-  <form (ngSubmit)="login()" #loginForm="ngForm">
-    <h1>Sign In</h1>
-    <div class="form-group">
-      <label for="email">Email:</label>
-      <input
-        type="email"
-        id="email"
-        name="email"
-        [(ngModel)]="username"
-        required
-        #emailField="ngModel"
-        placeholder="Enter your email"
-      />
-      <div *ngIf="emailField.invalid && emailField.touched" class="error">
-        Email is required
+  <div class="login-card">
+    <form (ngSubmit)="login()" #loginForm="ngForm">
+      <h1>Sign In</h1>
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          [(ngModel)]="username"
+          required
+          #emailField="ngModel"
+          placeholder="Enter your email"
+        />
+        <div *ngIf="emailField.invalid && emailField.touched" class="error">
+          Email is required
+        </div>
       </div>
-    </div>
-
-    <div class="form-group">
-      <label for="password">Password:</label>
-      <input
-        type="password"
-        id="password"
-        name="password"
-        [(ngModel)]="password"
-        required
-        #passwordField="ngModel"
-        placeholder="Enter your password"
-      />
-      <div *ngIf="passwordField.invalid && passwordField.touched" class="error">
-        Password is required
+  
+      <div class="form-group">
+        <label for="password">Password:</label>
+        <input
+          type="password"
+          id="password"
+          name="password"
+          [(ngModel)]="password"
+          required
+          #passwordField="ngModel"
+          placeholder="Enter your password"
+        />
+        <div *ngIf="passwordField.invalid && passwordField.touched" class="error">
+          Password is required
+        </div>
       </div>
-    </div>
-
-    <button type="submit" [disabled]="loginForm.invalid">Login</button>
-  </form>
+  
+      <button type="submit" [disabled]="loginForm.invalid">Login</button>
+    </form>
+  </div>
 </div>

@@ -1,0 +1,71 @@
+/* Full-page gradient background */
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(135deg, #1e90ff, #ff7f50);
+  }
+  
+  /* Centered card with form elements */
+  .login-card {
+    background-color: white;
+    padding: 2.5rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+  
+    h2 {
+      margin-bottom: 2rem;
+      font-size: 24px;
+      font-weight: bold;
+    }
+  
+    form {
+      display: flex;
+      flex-direction: column;
+      
+      .form-group {
+        margin-bottom: 1.5rem;
+        
+        label {
+          display: block;
+          font-size: 14px;
+          margin-bottom: 0.5rem;
+          text-align: left;
+        }
+  
+        input {
+          width: 100%;
+          padding: 0.8rem;
+          border: 1px solid #ccc;
+          border-radius: 5px;
+          font-size: 16px;
+  
+          &:focus {
+            outline: none;
+            border-color: #1e90ff;
+            box-shadow: 0 0 5px rgba(30, 144, 255, 0.5);
+          }
+        }
+      }
+  
+      button {
+        padding: 0.8rem;
+        background-color: #1e90ff;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+  
+        &:hover {
+          background-color: #187bcd;
+        }
+      }
+    }
+  }
+  

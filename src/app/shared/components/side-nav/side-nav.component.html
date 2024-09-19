@@ -1,1 +1,81 @@
-<p>side-nav works!</p>
+<!-- side-nav.component.html -->
+<div class="side-nav">
+  <button (click)="selectTab('activity')" [class.active]="selectedTab === 'activity'" class="nav-item">
+    <i class="fas fa-bell"></i>
+    <span>Activity</span>
+  </button>
+
+  <button (click)="selectTab('chat')" [class.active]="selectedTab === 'chat'" class="nav-item">
+    <i class="fas fa-comment-alt"></i>
+    <span>Chat</span>
+  </button>
+
+  <button (click)="selectTab('teams')" [class.active]="selectedTab === 'teams'" class="nav-item">
+    <i class="fas fa-users"></i>
+    <span>Teams</span>
+  </button>
+
+  <button class="nav-item">
+    <i class="fas fa-calendar"></i>
+    <span>Calendar</span>
+  </button>
+
+  <button class="nav-item">
+    <i class="fas fa-phone"></i>
+    <span>Calls</span>
+  </button>
+
+  <button class="nav-item">
+    <i class="fas fa-cloud"></i>
+    <span>OnDrive</span>
+  </button>
+
+  <button class="nav-item">
+    <i class="fas fa-ellipsis-h"></i>
+    <span>More</span>
+  </button>
+
+  <button class="nav-item">
+    <i class="fas fa-th"></i>
+    <span>Apps</span>
+  </button>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- app.component.html using Angular Material -->
+<!-- <mat-sidenav-container class="teams-container">
+    <mat-sidenav mode="side" opened>
+      <button mat-button (click)="selectTab('activity')" [class.active]="selectedTab === 'activity'">
+        <mat-icon>notifications</mat-icon>
+        Activity
+      </button>
+      <button mat-button (click)="selectTab('chat')" [class.active]="selectedTab === 'chat'">
+        <mat-icon>chat</mat-icon>
+        Chat
+      </button>
+      <button mat-button (click)="selectTab('teams')" [class.active]="selectedTab === 'teams'">
+        <mat-icon>group</mat-icon>
+        Teams
+      </button>
+    </mat-sidenav>
+
+  </mat-sidenav-container> -->
+  

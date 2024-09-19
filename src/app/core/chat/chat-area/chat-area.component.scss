@@ -1,0 +1,134 @@
+/* General chat area container */
+.chat-area {
+    display: flex;
+    position: relative;
+    width: calc(98vw - 380px);
+    flex-direction: column;
+    height: 98vh;
+    background-color: #f3f3f3;
+    padding: 10px 0;
+  }
+  
+  /* Header (user or team name) */
+  .chat-header {
+    // padding: 15px;
+    // background-color: #ffffff;
+    // border-bottom: 1px solid #e1e1e1;
+    // box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+    padding: 16px;
+    background-color: #ffffff;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+  
+    h3 {
+      text-align: left;
+      margin: 0;
+      color: #444;
+      font-size: 18px;
+      font-weight: 500;
+    }
+  }
+  
+  .chat-header h2 {
+    margin: 0;
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #3b3b3b;
+  }
+  
+  /* Messages container */
+  .messages-container {
+    flex-grow: 1;
+    padding: 15px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  /* Message item wrapper */
+  .message-item {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* Timestamp (above each message) */
+  .message-timestamp {
+    font-size: 0.75rem;
+    color: #7a7a7a;
+    margin-bottom: 3px;
+  }
+  
+  /* Message bubble styling */
+  .message-bubble {
+    max-width: 70%;
+    padding: 10px 15px;
+    border-radius: 15px;
+    font-size: 1rem;
+    background-color: #ffffff;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    word-wrap: break-word;
+  }
+  
+  /* Style for the messages that are sent by the user */
+  .own-message {
+    align-self: flex-end;
+    background-color: #e1ffc7;
+    text-align: right;
+  }
+  
+  /* Message bubbles for other users */
+  .message-bubble:not(.own-message) {
+    background-color: #f1f1f1;
+  }
+  
+  /* Responsive message bubbles */
+  .message-bubble {
+    flex-shrink: 0;
+    word-break: break-word;
+  }
+  
+  /* Input area for new messages */
+  .message-input {
+
+    display: flex;
+    align-items: center;
+    background-color: #2d2d2d; /* Dark background */
+    border-radius: 8px; /* Rounded corners */
+    padding: 8px 12px;
+    border: 1px solid #444;
+    color: #fff;
+  
+    input {
+      flex: 1;
+      background-color: transparent;
+      border: none;
+      outline: none;
+      padding: 8px;
+      color: #fff;
+  
+      &::placeholder {
+        color: #aaa;
+      }
+    }
+  
+    button {
+      background-color: transparent; /* Transparent background */
+      border: none; /* Remove default border */
+      cursor: pointer; /* Pointer cursor on hover */
+      color: #fff; /* White color for icons or text */
+      margin-left: 8px; /* Spacing between input and button */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0;
+  
+      &:focus {
+        outline: none; /* Remove focus outline */
+      }
+    }
+
+  }
+
+
+  
