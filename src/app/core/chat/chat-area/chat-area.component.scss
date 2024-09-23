@@ -5,8 +5,9 @@
     width: calc(98vw - 380px);
     flex-direction: column;
     height: 98vh;
-    background-color: #f3f3f3;
+    background-color: #25262b;
     padding: 10px 0;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5); 
   }
   
   /* Header (user or team name) */
@@ -16,14 +17,14 @@
     // border-bottom: 1px solid #e1e1e1;
     // box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
     padding: 16px;
-    background-color: #ffffff;
+    background-color: #25262b;
     text-align: center;
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid #1e1e1f;
   
     h3 {
       text-align: left;
       margin: 0;
-      color: #444;
+      color: #ffffff;
       font-size: 18px;
       font-weight: 500;
     }
@@ -93,10 +94,11 @@
 
     display: flex;
     align-items: center;
-    background-color: #2d2d2d; /* Dark background */
+    background-color: #2d2c38; /* Dark background */
     border-radius: 8px; /* Rounded corners */
     padding: 8px 12px;
-    border: 1px solid #444;
+    margin: 15px;
+    border: 1px solid #525252;
     color: #fff;
   
     input {

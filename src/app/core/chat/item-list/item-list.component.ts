@@ -3,6 +3,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';  // Import this for ngFor, ngIf, etc.
 import { FormsModule } from '@angular/forms'; // Import FormsModule if using forms
 import { ChatComponentService } from '../../../shared/services/common/chat-component-communication.services';
+import { UserService } from '../../../shared/services/user.service';
+import { User } from '../../../shared/models/user.model';
 // import { CommonModule } from '@angular/common'; // Import this for ngFor, ngIf, etc.
 
 // import { ChatRoutingModule } from './chat-routing.module';
@@ -23,18 +25,38 @@ export class ItemListComponent implements OnInit {
 
   itemType: string ="";
   selectedChat: string ="";
+  users: User[] = [];
 
-  constructor(private chatcomponentService: ChatComponentService){}
+  constructor(
+    private chatcomponentService: ChatComponentService,
+    private userService: UserService
+  
+  ){}
 
   ngOnInit(){
     this.chatcomponentService.itemType$.subscribe(type =>{
       this.itemType = type;
     })
+    this.initialize();
+  }
+
+  initialize(){
+    this.getAllUsers();
   }
 
   selectChat(chat: string) {
     this.selectedChat = chat;
     this.chatcomponentService.setChat(chat);
+  }
+
+  getAllUsers(){
+    this.userService.getUsers().subscribe((users: User[])=>{
+      this.users = users;
+      console.log(users);
+    },
+      (err)=>{
+        console.log(err);
+      })
   }
 
   // Sample data for chats and teams
