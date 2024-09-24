@@ -42,6 +42,7 @@ export class ItemListComponent implements OnInit {
 
   initialize(){
     this.getAllUsers();
+    this.getCurrentUser();
   }
 
   selectChat(chat: string) {
@@ -57,6 +58,12 @@ export class ItemListComponent implements OnInit {
       (err)=>{
         console.log(err);
       })
+  }
+
+  getCurrentUser(){
+    this.userService.getCurrentUsers().subscribe((user: User)=>{
+      console.log("Current User:",user);
+    })
   }
 
   // Sample data for chats and teams

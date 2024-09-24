@@ -6,11 +6,11 @@
   
     <!-- Chat List -->
     <ul class="item-list" *ngIf="itemType === 'chat'">
-      <li *ngFor="let chat of chats" class="item-list-entry">
+      <li *ngFor="let user of users" class="item-list-entry">
         <div class="item-content">
-          <button (click)="selectChat(chat.name)" [class.active]="selectedChat === chat.name" class="chat-item">
-            <span class="item-name">{{ chat.name }}</span>
-            <span class="item-last-message">{{ chat.lastMessage }}</span>
+          <button (click)="selectChat(user.firstName)" [class.active]="selectedChat === user.firstName" class="chat-item">
+            <span class="item-name">{{ user.firstName }}</span>
+            <span class="item-last-message">{{ user.email }}</span>
           </button> 
         </div>
       </li>

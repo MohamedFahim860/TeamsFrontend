@@ -24,5 +24,10 @@ export class UserService {
     const url = `${this.baseUrl}/users`;  // Endpoint for GetUsers
     return this.http.get<User[]>(url);  // Make the HTTP GET request
   }
+
+  getCurrentUsers(): Observable<User> {
+    const url = `${this.baseUrl}/users/current`;  
+    return this.http.get<User>(url);
+  }
   
 }
