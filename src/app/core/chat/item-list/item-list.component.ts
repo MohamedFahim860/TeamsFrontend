@@ -45,9 +45,9 @@ export class ItemListComponent implements OnInit {
     this.getCurrentUser();
   }
 
-  selectChat(chat: string) {
-    this.selectedChat = chat;
-    this.chatcomponentService.setChat(chat);
+  selectChat(user: User) {
+    this.selectedChat = user.firstName;
+    this.chatcomponentService.setChat(user.firstName);
   }
 
   getAllUsers(){
