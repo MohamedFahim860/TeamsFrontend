@@ -8,26 +8,25 @@
     <div class="messages-container">
       <div *ngFor="let message of messages" class="message-item">
         <!-- Time of the message -->
-        <div class="message-timestamp">
-          {{ message.timestamp }}
+        <div class="message-timestamp" [ngClass]="{'own-message-timestamp': message.userId!=selectedUser?.userId}">
+          {{ message.sentAt | date:'shortTime' }}
         </div>
         <!-- Message bubble -->
-        <div class="message-bubble" [ngClass]="{ 'own-message': message.sender === 'me' }">
-          {{ message.content }}
+        <div class="message-bubble" [ngClass]="{ 'own-message': message.userId != selectedUser?.userId}">
+          {{ message.messageText }}
         </div>
       </div>
     </div>
   
     <!-- Input area (you can modify this according to how you'd like to handle sending messages) -->
     <div class="message-input">
-        <input type="text" placeholder="Type a new message..." />
+        <input type="text" placeholder="Type a new message..." [(ngModel)]="newMessage" (keydown.enter)="sendMessage()"/>
 
-        <button class="icon-button" (mouseover)="isHovered = true" (mouseleave)="isHovered = false">
+        <button class="icon-button" (click)="sendMessage()" (mouseover)="isHovered = true" (mouseleave)="isHovered = false">
             <!-- <i [ngClass]="{'fas fa-paper-plane': isHovered, 'far fa-paper-plane': isHovered}"></i> -->
             <i [ngClass]="{'far fa-paper-plane': !isHovered}"></i>
             <i [ngClass]="{'fas fa-paper-plane': isHovered}"></i>
         </button>
-
     </div>
   </div>
   

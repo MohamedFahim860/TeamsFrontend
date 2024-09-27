@@ -26,6 +26,7 @@ export class ItemListComponent implements OnInit {
   itemType: string ="";
   selectedChat: string ="";
   users: User[] = [];
+  selectedUser?: User;
 
   constructor(
     private chatcomponentService: ChatComponentService,
@@ -46,8 +47,10 @@ export class ItemListComponent implements OnInit {
   }
 
   selectChat(user: User) {
+    this.selectedUser = user;
     this.selectedChat = user.firstName;
     this.chatcomponentService.setChat(user.firstName);
+    this.chatcomponentService.setChatUser(user);
   }
 
   getAllUsers(){

@@ -4,8 +4,8 @@
     position: relative;
     width: calc(98vw - 380px);
     flex-direction: column;
-    height: 98vh;
-    background-color: #25262b;
+    height: 100vh;
+    background-color: #292929;
     padding: 10px 0;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5); 
   }
@@ -17,7 +17,7 @@
     // border-bottom: 1px solid #e1e1e1;
     // box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
     padding: 16px;
-    background-color: #25262b;
+    background-color: #2e2e2e;
     text-align: center;
     border-bottom: 1px solid #1e1e1f;
   
@@ -65,22 +65,28 @@
     max-width: 70%;
     padding: 10px 15px;
     border-radius: 15px;
-    font-size: 1rem;
+    font-size: 0.8rem;
     background-color: #ffffff;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
     word-wrap: break-word;
+    color: #ffffff;
   }
   
   /* Style for the messages that are sent by the user */
   .own-message {
     align-self: flex-end;
-    background-color: #e1ffc7;
+    background-color: #2B2B40;
+    text-align: right;
+  }
+
+  .own-message-timestamp {
+    align-self: flex-end;
     text-align: right;
   }
   
   /* Message bubbles for other users */
   .message-bubble:not(.own-message) {
-    background-color: #f1f1f1;
+    background-color: #363636;
   }
   
   /* Responsive message bubbles */

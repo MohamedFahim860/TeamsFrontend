@@ -14,17 +14,17 @@ export class MessageService {
   constructor(private http: HttpClient) { }
 
   sendMessage(messageText: string, receiverId: number): Observable<number> {
-    const url = `${this.baseUrl}/message/send`;
+    const url = `${this.baseUrl}/Messages/send`;
 
-    const message = {
-      messageText: messageText
-    };
+    // const message = {
+    //   messageText: messageText
+    // };
 
-    return this.http.post<number>(url, { message, receiverId });
+    return this.http.post<number>(url, { messageText, receiverId });
   }
 
   getMessagesBetweenUsers(receiverId: number): Observable<Message[]> {
-    const url = `${this.baseUrl}/message/chat/${receiverId}`;  // Endpoint for getting messages
+    const url = `${this.baseUrl}/Messages/chat/${receiverId}`;  // Endpoint for getting messages
 
     // Make the HTTP GET request to retrieve all messages
     return this.http.get<Message[]>(url);

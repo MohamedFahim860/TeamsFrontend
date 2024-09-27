@@ -8,7 +8,7 @@
     <ul class="item-list" *ngIf="itemType === 'chat'">
       <li *ngFor="let user of users" class="item-list-entry">
         <div class="item-content">
-          <button (click)="selectChat(user.firstName)" [class.active]="selectedChat === user.firstName" class="chat-item">
+          <button (click)="selectChat(user)" [class.active]="selectedChat === user.firstName" class="chat-item">
             <span class="item-name">{{ user.firstName }}</span>
             <span class="item-last-message">{{ user.email }}</span>
           </button> 
