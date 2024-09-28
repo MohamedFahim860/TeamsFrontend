@@ -24,10 +24,15 @@ export class MessageService {
   }
 
   getMessagesBetweenUsers(receiverId: number): Observable<Message[]> {
-    const url = `${this.baseUrl}/Messages/chat/${receiverId}`;  // Endpoint for getting messages
-
-    // Make the HTTP GET request to retrieve all messages
+    const url = `${this.baseUrl}/Messages/chat/${receiverId}`;
     return this.http.get<Message[]>(url);
   }
+
+  deleteMessage(messageId: number): Observable<boolean> {
+    console.log("Delete Message Service API request Executed!")
+    const url = `${this.baseUrl}/Messages/delete/${messageId}`; 
+    return this.http.delete<boolean>(url);
+  }
+
   
 }

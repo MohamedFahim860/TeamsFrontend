@@ -6,7 +6,7 @@
   
     <!-- Chat messages area -->
     <div class="messages-container">
-      <div *ngFor="let message of messages" class="message-item">
+      <div *ngFor="let message of messages" class="message-item" (contextmenu)="openContextMenu($event, message)">
         <!-- Time of the message -->
         <div class="message-timestamp" [ngClass]="{'own-message-timestamp': message.userId!=selectedUser?.userId}">
           {{ message.sentAt | date:'shortTime' }}
@@ -16,6 +16,15 @@
           {{ message.messageText }}
         </div>
       </div>
+    </div>
+
+    <!-- Custom context menu -->
+    <div class="custom-context-menu" [style.left.px]="contextMenuPosition.x" [style.top.px]="contextMenuPosition.y" *ngIf="isContextMenuVisible">
+      <ul>
+        <li (click)="editMessage()" *ngIf="selectedMessage.userId!=selectedUser?.userId"><i class="fas fa-edit"></i>Edit</li>
+        <li (click)="deleteMessage()" *ngIf="selectedMessage.userId!=selectedUser?.userId"><i class="fas fa-trash-alt"></i>Delete</li>
+        <li><i class="fas fa-share"></i>Forward</li>
+      </ul>
     </div>
   
     <!-- Input area (you can modify this according to how you'd like to handle sending messages) -->

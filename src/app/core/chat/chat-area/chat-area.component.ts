@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, SimpleChanges  } from '@angular/core';
+import { Component, HostListener, Input, OnInit, SimpleChanges  } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms'; // If you need forms
 import { ChatComponentService } from '../../../shared/services/common/chat-component-communication.services';
@@ -27,6 +27,10 @@ export class ChatAreaComponent implements OnInit {
   chatName: string ="";
   newMessage: string ="";
   messages: Message[] =[];
+
+  isContextMenuVisible = false;
+  contextMenuPosition = { x: 0, y: 0 };
+  selectedMessage: any = null;
 
   ngOnInit(): void {
     this.chatcomponentService.itemType$.subscribe(type =>{
@@ -103,6 +107,55 @@ export class ChatAreaComponent implements OnInit {
         console.error('Error fetching messages:', error);
       }
     );
+  }
+
+  openContextMenu(event: MouseEvent, message: any): void {
+    event.preventDefault();
+    this.contextMenuPosition.x = event.clientX -380;
+    this.contextMenuPosition.y = event.clientY;
+    this.isContextMenuVisible = true;
+    this.selectedMessage = message; 
+    console.log(this.selectedMessage);
+  }
+
+  closeContextMenu(): void {
+    this.isContextMenuVisible = false;
+    this.selectedMessage = null; 
+  }
+
+  //Without subscribing, it doesn't even make the api call and the backend controller won't even be hit, the moment we subscribe, the httip request is made
+  deleteMessage(): void {
+    if (this.selectedMessage) {
+      this.messageService.deleteMessage(this.selectedMessage.messageId).subscribe({
+        next:(response: boolean) => {
+          if(response){
+            console.log('Message deleted successfully');
+          }
+          else{
+            console.error('Message deletion failed');
+          }
+        },
+        error: (error) =>{
+          console.error('Error deleting message', error);
+        }
+      });
+      this.messages = this.messages.filter(m => m.messageId !== this.selectedMessage.messageId); // Remove the message from the array
+    }
+    this.closeContextMenu();
+  }
+
+  // Listen for outside clicks to close the context menu
+  @HostListener('document:click', ['$event'])
+  handleOutsideClick(event: MouseEvent): void {
+    this.isContextMenuVisible = false;
+  }
+
+  editMessage(): void {
+    if (this.selectedMessage) {
+      console.log('Edit message clicked:', this.selectedMessage);
+      // Logic to edit the selected message
+    }
+    this.closeContextMenu();
   }
 
   // selectReceiver(receiverId: number): void {
