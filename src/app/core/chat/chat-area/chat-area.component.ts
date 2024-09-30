@@ -32,6 +32,9 @@ export class ChatAreaComponent implements OnInit {
   contextMenuPosition = { x: 0, y: 0 };
   selectedMessage: any = null;
 
+  isEditingMessage: boolean = false;
+  editedMessageText: string = "";
+
   ngOnInit(): void {
     this.chatcomponentService.itemType$.subscribe(type =>{
       this.chatName = type;
@@ -111,16 +114,16 @@ export class ChatAreaComponent implements OnInit {
 
   openContextMenu(event: MouseEvent, message: any): void {
     event.preventDefault();
-    this.contextMenuPosition.x = event.clientX -380;
+    this.contextMenuPosition.x = event.clientX -380;//subtracted the width of the navbar and the item list to adjust the position of the context menu relative to the whole page.
     this.contextMenuPosition.y = event.clientY;
     this.isContextMenuVisible = true;
     this.selectedMessage = message; 
-    console.log(this.selectedMessage);
+
   }
 
   closeContextMenu(): void {
     this.isContextMenuVisible = false;
-    this.selectedMessage = null; 
+    //this.selectedMessage = null; 
   }
 
   //Without subscribing, it doesn't even make the api call and the backend controller won't even be hit, the moment we subscribe, the httip request is made
@@ -151,11 +154,32 @@ export class ChatAreaComponent implements OnInit {
   }
 
   editMessage(): void {
-    if (this.selectedMessage) {
-      console.log('Edit message clicked:', this.selectedMessage);
-      // Logic to edit the selected message
-    }
+    this.isEditingMessage = true;
+    this.editedMessageText = this.selectedMessage.messageText;
     this.closeContextMenu();
+  }
+
+  confirmEdit(): void {
+    if (this.selectedMessage) {
+      this.selectedMessage.messageText = this.editedMessageText;
+
+      // Call the messageService to update the message on the server
+      this.messageService.updateMessage(this.selectedMessage.messageId, this.editedMessageText).subscribe({
+        next: (updatedMessage) => {
+          console.log('Message updated successfully:', updatedMessage);
+          this.isEditingMessage = false;
+        },
+        error: (error) => {
+          console.error('Error updating message:', error);
+        }
+      });
+    }
+    this.isEditingMessage = false;
+  }
+
+  cancelEdit(): void {
+    this.isEditingMessage = false;
+    this.editedMessageText = '';
   }
 
   // selectReceiver(receiverId: number): void {

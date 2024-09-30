@@ -29,9 +29,14 @@ export class MessageService {
   }
 
   deleteMessage(messageId: number): Observable<boolean> {
-    console.log("Delete Message Service API request Executed!")
     const url = `${this.baseUrl}/Messages/delete/${messageId}`; 
     return this.http.delete<boolean>(url);
+  }
+
+  updateMessage(messageId: number, editedMessageText: string): Observable<Message> {
+    console.log("Update message service api request funciton is being executed!!!!!!!!!");
+    const url = `${this.baseUrl}/Messages/update/${messageId}`; 
+    return this.http.put<Message>(url, { messageText: editedMessageText });
   }
 
   

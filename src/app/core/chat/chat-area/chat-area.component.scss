@@ -87,6 +87,7 @@
   /* Message bubbles for other users */
   .message-bubble:not(.own-message) {
     background-color: #363636;
+    align-self: flex-start;
   }
   
   /* Responsive message bubbles */
@@ -94,6 +95,7 @@
     flex-shrink: 0;
     word-break: break-word;
   }
+
   
   /* Input area for new messages */
   .message-input {
@@ -186,4 +188,52 @@
       content: "\f1f8"; /* Delete icon (FontAwesome) */
     }
 
+
+    .edit-message-input {
+      padding: 8px 10px;
+      font-size: 14px;
+      border: none;
+      border-radius: 5px;
+      background-color: #252525; // match background of the input
+      word-wrap: break-word;
+      color: white;
+      outline: none;
+    }
+
+    .icon-button {
+      background-color: transparent;
+      border: none;
+      color: #ccc; // default icon color
+      margin-left: 5px;
+      font-size: 16px;
+      cursor: pointer;
+    
+      &:hover {
+        color: white; // change color on hover for clarity
+      }
+    
+      i {
+        vertical-align: middle; // align icon with text input
+      }
+    }
+
+    .edit-message-input,
+    .icon-button {
+      display: inline-block; // align elements inline
+      margin-bottom: 5px;
+    }
   
+    .edit-message-input {
+      flex: 1; // take up remaining space
+    }
+
+    .icon-button {
+      flex-shrink: 0; // prevent shrinking
+    }
+
+    .edit-message-input-container {
+      display: flex;
+      justify-content: flex-end; // Align everything to the right
+      align-items: center; // Vertically align the input and buttons
+      padding-right: 10px; // Add some right padding for spacing
+    }

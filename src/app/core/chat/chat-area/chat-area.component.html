@@ -7,12 +7,21 @@
     <!-- Chat messages area -->
     <div class="messages-container">
       <div *ngFor="let message of messages" class="message-item" (contextmenu)="openContextMenu($event, message)">
+
+        <div class="edit-message-input-container">
+          <div *ngIf="isEditingMessage && selectedMessage === message">
+            <input type="text" [(ngModel)]="editedMessageText" class="edit-message-input">
+            <button class="icon-button" (click)="confirmEdit()"><i class="fas fa-check"></i></button>
+            <button class="icon-button" (click)="cancelEdit()"><i class="fas fa-times"></i></button>
+          </div>
+        </div>
+
         <!-- Time of the message -->
-        <div class="message-timestamp" [ngClass]="{'own-message-timestamp': message.userId!=selectedUser?.userId}">
+        <div class="message-timestamp" [ngClass]="{'own-message-timestamp': message.userId!=selectedUser?.userId}" *ngIf="!isEditingMessage || selectedMessage !== message">
           {{ message.sentAt | date:'shortTime' }}
         </div>
         <!-- Message bubble -->
-        <div class="message-bubble" [ngClass]="{ 'own-message': message.userId != selectedUser?.userId}">
+        <div class="message-bubble" [ngClass]="{ 'own-message': message.userId != selectedUser?.userId}" *ngIf="!isEditingMessage || selectedMessage !== message">
           {{ message.messageText }}
         </div>
       </div>
