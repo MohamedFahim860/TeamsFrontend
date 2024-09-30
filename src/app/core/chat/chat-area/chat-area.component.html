@@ -10,7 +10,7 @@
 
         <div class="edit-message-input-container">
           <div *ngIf="isEditingMessage && selectedMessage === message">
-            <input type="text" [(ngModel)]="editedMessageText" class="edit-message-input">
+            <textarea type="text" [(ngModel)]="editedMessageText" class="edit-message-input"></textarea>
             <button class="icon-button" (click)="confirmEdit()"><i class="fas fa-check"></i></button>
             <button class="icon-button" (click)="cancelEdit()"><i class="fas fa-times"></i></button>
           </div>

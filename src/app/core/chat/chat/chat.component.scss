@@ -1,6 +1,14 @@
 .container{
     display: flex;
     flex-direction: row;
+    // justify-content:end;
+    align-items: stretch;
+    background-color: aqua;
     height: 100vh;
+    overflow-y:hidden;
+    overflow-x:hidden;
+
+    
+    // height: 90vh;
 }
 

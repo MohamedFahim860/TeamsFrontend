@@ -1,11 +1,14 @@
 /* side-nav.component.css */
 .side-nav {
     width: 80px; /* Adjust this as per the desired width */
-    height: 98vh;
+    height: 97vh;
+    // display: ;
     background-color: #151c29;
     display: flex;
     flex-direction: column;
     align-items: center;
+    // align-self: stretch;
+    // justify-self: stretch;
     padding: 20px 0;
   }
   

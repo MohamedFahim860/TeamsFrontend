@@ -2,9 +2,10 @@
 .chat-area {
     display: flex;
     position: relative;
-    width: calc(98vw - 380px);
+    width: calc(100vw - 380px);
     flex-direction: column;
     height: 100vh;
+    // flex: 1; 
     background-color: #292929;
     padding: 10px 0;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5); 
@@ -193,11 +194,16 @@
       padding: 8px 10px;
       font-size: 14px;
       border: none;
-      border-radius: 5px;
+      width: 400px;
+      border-radius: 10px;
+      resize: none; /* Disable manual resizing */
+      overflow-y: auto; 
+      max-height: 100px; 
       background-color: #252525; // match background of the input
       word-wrap: break-word;
       color: white;
       outline: none;
+      transition: height 0.2s ease;
     }
 
     .icon-button {
@@ -236,4 +242,11 @@
       justify-content: flex-end; // Align everything to the right
       align-items: center; // Vertically align the input and buttons
       padding-right: 10px; // Add some right padding for spacing
+      word-wrap: break-word;
+      flex-shrink: 0;
+      word-break: break-word;
     }
+
+    // .edit-message-input-container::-webkit-scrollbar {
+    //   width: 8px; /* Width of the scrollbar */
+    // }
