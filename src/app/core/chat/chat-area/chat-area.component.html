@@ -8,24 +8,34 @@
     <div class="messages-container">
       <div *ngFor="let message of messages" class="message-item" (contextmenu)="openContextMenu($event, message)">
 
-        <div class="edit-message-input-container">
-          <div *ngIf="isEditingMessage && selectedMessage === message">
-            <textarea type="text" [(ngModel)]="editedMessageText" class="edit-message-input"></textarea>
-            <button class="icon-button" (click)="confirmEdit()"><i class="fas fa-check"></i></button>
-            <button class="icon-button" (click)="cancelEdit()"><i class="fas fa-times"></i></button>
-          </div>
-        </div>
-
         <!-- Time of the message -->
-        <div class="message-timestamp" [ngClass]="{'own-message-timestamp': message.userId!=selectedUser?.userId}" *ngIf="!isEditingMessage || selectedMessage !== message">
+        <div class="message-timestamp" [ngClass]="{'own-message-timestamp': message.userId != selectedUser?.userId}" *ngIf="!isEditingMessage || selectedMessage !== message">
           {{ message.sentAt | date:'shortTime' }}
         </div>
-        <!-- Message bubble -->
-        <div class="message-bubble" [ngClass]="{ 'own-message': message.userId != selectedUser?.userId}" *ngIf="!isEditingMessage || selectedMessage !== message">
+    
+        <!-- Editable message div -->
+        <div
+          class="message-bubble"
+          [ngClass]="{
+            'own-message': message.userId !== selectedUser?.userId,
+            'editing-message': isEditingMessage && selectedMessage === message
+          }"
+          [attr.contenteditable]="isEditingMessage && selectedMessage === message ? 'true' : null"
+          (input)="onInput($event, message)"  
+        >
           {{ message.messageText }}
         </div>
+    
+        <!-- Buttons for confirming or canceling edit -->
+        <div *ngIf="isEditingMessage && selectedMessage === message" class="edit-buttons-container">
+          <button class="icon-button" (click)="confirmEdit()"><i class="fas fa-check"></i></button>
+          <button class="icon-button" (click)="cancelEdit()"><i class="fas fa-times"></i></button>
+        </div>
+        
       </div>
     </div>
+    
+    
 
     <!-- Custom context menu -->
     <div class="custom-context-menu" [style.left.px]="contextMenuPosition.x" [style.top.px]="contextMenuPosition.y" *ngIf="isContextMenuVisible">

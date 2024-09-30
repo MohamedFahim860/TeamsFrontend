@@ -34,6 +34,7 @@ export class ChatAreaComponent implements OnInit {
 
   isEditingMessage: boolean = false;
   editedMessageText: string = "";
+  originalMessageText: string = "";
 
   ngOnInit(): void {
     this.chatcomponentService.itemType$.subscribe(type =>{
@@ -72,6 +73,15 @@ export class ChatAreaComponent implements OnInit {
   //     this.getMessages(this.selectedUser.userId);
   //   }
   // }
+
+  onInput(event: Event, message: any) {
+    const target = event.target as HTMLElement;
+
+    // Safely check if target is not null
+    if (target) {
+      this.editedMessageText = target.innerText; // Update the edited message text
+    }
+  }
 
   isHovered = false;
 
@@ -118,6 +128,7 @@ export class ChatAreaComponent implements OnInit {
     this.contextMenuPosition.y = event.clientY;
     this.isContextMenuVisible = true;
     this.selectedMessage = message; 
+    this.originalMessageText = message;
 
   }
 
@@ -179,7 +190,8 @@ export class ChatAreaComponent implements OnInit {
 
   cancelEdit(): void {
     this.isEditingMessage = false;
-    this.editedMessageText = '';
+    this.editedMessageText = this.originalMessageText;
+    this.selectedMessage = null;
   }
 
   // selectReceiver(receiverId: number): void {
