@@ -4,6 +4,7 @@ import { FormsModule, FormBuilder, FormGroup, Validators, ReactiveFormsModule } 
 import { RouterModule } from '@angular/router';
 import { UserService } from '../../../shared/services/user.service';
 import { User } from '../../../shared/models/user.model';
+import { forkJoin } from 'rxjs';
 
 @Component({
   selector: 'app-sign-up',
@@ -36,30 +37,35 @@ export class SignUpComponent {
     return password === confirmPassword ? null : {notMatching: true};
   }
 
-  onSubmit(){
-    if(this.signupForm.invalid){
+  onSubmit() {
+    if (this.signupForm.invalid) {
       return;
     }
 
-    const{email, username} = this.signupForm.value;
+    const { email, username } = this.signupForm.value;
 
-    this.userService.checkEmailExists(email).subscribe(isTaken =>{
-      this.isEmailTaken = isTaken;
-      if(isTaken){
-        this.signupForm.get('email')?.setErrors({emailTaken: true});
-      }else{
+    // Using forkJoin to handle both checks
+    forkJoin({
+      emailTaken: this.userService.checkEmailExists(email),
+      usernameTaken: this.userService.checkUsernameExists(username)
+    }).subscribe(({ emailTaken, usernameTaken }) => {
+      this.isEmailTaken = emailTaken;
+      this.isUsernameTaken = usernameTaken;
+
+      // Check both flags before submitting
+      if (emailTaken) {
+        this.signupForm.get('email')?.setErrors({ emailTaken: true });
+      }
+
+      if (usernameTaken) {
+        this.signupForm.get('username')?.setErrors({ usernameTaken: true });
+      }
+
+      // Only submit if both are not taken
+      if (!emailTaken && !usernameTaken) {
         this.submitSignup();
       }
     });
-
-    this.userService.checkUsernameExists(username).subscribe(isTaken => {
-      this.isUsernameTaken = isTaken;
-      if(isTaken){
-        this.signupForm.get('username')?.setErrors({usernameTaken: true});
-      }else{
-        this.submitSignup();
-      }
-    })
   }
 
   submitSignup(){
