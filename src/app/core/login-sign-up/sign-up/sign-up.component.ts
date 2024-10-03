@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
-import { RouterModule } from '@angular/router';
+import { RouterModule, Router } from '@angular/router';
 import { UserService } from '../../../shared/services/user.service';
 import { User } from '../../../shared/models/user.model';
 import { forkJoin } from 'rxjs';
@@ -19,7 +19,7 @@ export class SignUpComponent {
   isEmailTaken: boolean = false;
   isUsernameTaken: boolean = false;
 
-  constructor(private fb: FormBuilder, private userService : UserService){
+  constructor(private fb: FormBuilder, private userService : UserService, private router: Router){
 
     this.signupForm = this.fb.group({
       email: ['',[Validators.required, Validators.email]],
@@ -83,6 +83,7 @@ export class SignUpComponent {
     this.userService.addUser(user).subscribe(
       (response)=>{
         console.log('User added successfully', response);
+        this.router.navigate(['/login']); // Redirect to login page
       },
       (error)=>{
         console.error('Error adding user', error);
