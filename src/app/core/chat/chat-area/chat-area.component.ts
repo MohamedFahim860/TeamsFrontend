@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms'; // If you need forms
 import { ChatComponentService } from '../../../shared/services/common/chat-component-communication.services';
 import { User } from '../../../shared/models/user.model';
 import { MessageService } from '../../../shared/services/message.service';
+import { UserService } from '../../../shared/services/user.service';
 import { Message } from '../../../shared/models/message.model';
 import { timeout } from 'rxjs';
 
@@ -23,12 +24,14 @@ export class ChatAreaComponent implements OnInit {
   (
     private chatcomponentService: ChatComponentService,
     private messageService: MessageService,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
+    private userService: UserService
   ){}
 
-  chatName: string ="";
-  newMessage: string ="";
-  messages: Message[] =[];
+  chatName: string = "";
+  newMessage: string = "";
+  messages: Message[] = [];
+  currentUser: string = "";
 
   isContextMenuVisible = false;
   contextMenuPosition = { x: 0, y: 0 };
@@ -59,6 +62,10 @@ export class ChatAreaComponent implements OnInit {
         console.error('No valid user selected!');
       }
     })
+
+    this.getCurrentUser();
+
+
 
     // if (this.selectedUser?.userId !== undefined && this.selectedUser?.userId !== null) {
     //   this.getMessages(this.selectedUser.userId);
@@ -198,6 +205,13 @@ export class ChatAreaComponent implements OnInit {
     // Manually trigger change detection
     this.cdr.detectChanges();
     //message.messageText = this.originalMessageText;
+  }
+
+  getCurrentUser(){
+    this.userService.getCurrentUsers().subscribe((user: User)=>{
+      this.currentUser = user.firstName + " " + user.lastName;
+      console.log("Current User:",user.firstName);
+    })
   }
 
   // selectReceiver(receiverId: number): void {

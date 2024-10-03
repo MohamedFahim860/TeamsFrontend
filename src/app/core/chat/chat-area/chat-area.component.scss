@@ -17,17 +17,33 @@
     // background-color: #ffffff;
     // border-bottom: 1px solid #e1e1e1;
     // box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between;
     padding: 16px;
     background-color: #2e2e2e;
     text-align: center;
     border-bottom: 1px solid #1e1e1f;
   
-    h3 {
+    .h3 {
       text-align: left;
       margin: 0;
       color: #ffffff;
       font-size: 18px;
       font-weight: 500;
+    }
+
+    .Receiver-name h3 {
+      margin: 0;    
+      font-size: 18px;   
+      color: #ffffff; 
+      font-weight: 500;   
+  }
+
+    .Current-user h3 {
+      margin: 0;         
+      font-size: 18px;   
+      color: #ffffff;  
+      font-weight: 500;          
     }
   }
   
