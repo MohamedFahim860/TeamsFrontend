@@ -1,10 +1,11 @@
-import { Component, HostListener, Input, OnInit, SimpleChanges  } from '@angular/core';
+import { Component, HostListener, Input, OnInit, SimpleChanges, ChangeDetectorRef  } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms'; // If you need forms
 import { ChatComponentService } from '../../../shared/services/common/chat-component-communication.services';
 import { User } from '../../../shared/models/user.model';
 import { MessageService } from '../../../shared/services/message.service';
 import { Message } from '../../../shared/models/message.model';
+import { timeout } from 'rxjs';
 
 @Component({
   selector: 'app-chat-area',
@@ -21,7 +22,8 @@ export class ChatAreaComponent implements OnInit {
   constructor
   (
     private chatcomponentService: ChatComponentService,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private cdr: ChangeDetectorRef
   ){}
 
   chatName: string ="";
@@ -33,6 +35,7 @@ export class ChatAreaComponent implements OnInit {
   selectedMessage: any = null;
 
   isEditingMessage: boolean = false;
+  isRefreshEditInput: boolean = false;
   editedMessageText: string = "";
   originalMessageText: string = "";
 
@@ -188,10 +191,13 @@ export class ChatAreaComponent implements OnInit {
     this.isEditingMessage = false;
   }
 
-  cancelEdit(): void {
+  cancelEdit(message: Message): void {
     this.isEditingMessage = false;
     this.editedMessageText = this.originalMessageText;
     this.selectedMessage = null;
+    // Manually trigger change detection
+    this.cdr.detectChanges();
+    //message.messageText = this.originalMessageText;
   }
 
   // selectReceiver(receiverId: number): void {

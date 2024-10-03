@@ -1,0 +1,228 @@
+/* Full-page gradient background */
+.signup-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: linear-gradient(135deg, #1e90ff, #ff7f50);
+}
+
+/* Centered card with form elements */
+.signup-card {
+  background-color: white;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 450px; /* Slightly reduced width for compactness */
+  height: auto;
+  text-align: center;
+
+  h1 {
+    margin-bottom: 1.5rem;
+    font-size: 24px;
+    font-weight: bold;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+
+    /* Adjust the full-name-div to place fields side by side */
+    .full-name-div {
+      display: flex;
+      flex-direction: row;
+      margin-right: 12px;
+      //justify-content: space-between;
+      gap: 1.5rem;
+
+      .form-group {
+        flex: 1; /* Make both first and last name fields take equal space */
+      }
+
+      /* Ensure input fields are compact inside the full-name-div */
+      input {
+        width: 100%;
+        padding: 0.6rem; /* Reduce padding to make inputs more compact */
+        font-size: 14px; /* Adjusted font size for compactness */
+      }
+    }
+
+    /* Compact form fields */
+    .form-group {
+      margin-bottom: 1rem;
+
+      label {
+        display: block;
+        font-size: 14px;
+        margin-bottom: 0.4rem;
+        text-align: left;
+      }
+
+      input {
+        width: 95%;
+        padding: 0.6rem; /* Reduced padding for compactness */
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 14px; /* Reduced font size */
+        
+        &:focus {
+          outline: none;
+          border-color: #1e90ff;
+          box-shadow: 0 0 5px rgba(30, 144, 255, 0.5);
+        }
+      }
+
+      .error {
+        color: red;
+        font-size: 12px;
+        text-align: left;
+      }
+    }
+
+    /* Compact button styling */
+    button {
+      padding: 0.8rem;
+      background-color: #1e90ff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+
+      &:hover {
+        background-color: #0aa71f;
+      }
+
+      &:disabled {
+        background-color: #ccc;
+        cursor: not-allowed;
+      }
+    }
+
+    .already-account {
+      margin-top: 1rem;
+      font-size: 14px;
+    
+      a {
+        color: #1e90ff;
+        text-decoration: none;
+        font-weight: bold;
+    
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+    
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// /* Full-page gradient background */
+// .signup-container {
+//     display: flex;
+//     justify-content: center;
+//     align-items: center;
+//     height: 100vh;
+//     background: linear-gradient(135deg, #1e90ff, #ff7f50);
+//     //overflow-y: hidden;
+//   }
+  
+//   /* Centered card with form elements */
+//   .signup-card {
+//     background-color: white;
+//     padding: 2.5rem;
+//     border-radius: 12px;
+//     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+//     width: 100%;
+//     max-width: 400px;
+//     height: 85vh;
+//     text-align: center;
+//     h1 {
+//       margin-bottom: 1rem;
+//       font-size: 24px;
+//       font-weight: bold;
+//     }
+  
+//     form {
+//       display: flex;
+//       flex-direction: column;
+
+//       .full-name-div{
+//         display: flex;
+//         justify-content: space-between; /* Align first and last name fields side by side */
+//         gap: 1rem;
+//       }
+      
+//       .form-group {
+//         margin-bottom: 1.5rem;
+  
+//         label {
+//           display: block;
+//           font-size: 14px;
+//           margin-bottom: 0.5rem;
+//           text-align: left;
+//         }
+  
+//         input {
+//           width: 100%;
+//           padding: 0.8rem;
+//           border: 1px solid #ccc;
+//           border-radius: 5px;
+//           font-size: 16px;
+  
+//           &:focus {
+//             outline: none;
+//             border-color: #1e90ff;
+//             box-shadow: 0 0 5px rgba(30, 144, 255, 0.5);
+//           }
+//         }
+  
+//         .error {
+//           color: red;
+//           font-size: 12px;
+//           text-align: left;
+//         }
+//       }
+  
+//       button {
+//         padding: 0.8rem;
+//         background-color: #1e90ff;
+//         color: white;
+//         border: none;
+//         border-radius: 5px;
+//         font-size: 16px;
+//         cursor: pointer;
+//         transition: background-color 0.3s ease;
+  
+//         &:hover {
+//           background-color: #187bcd;
+//         }
+  
+//         &:disabled {
+//           background-color: #ccc;
+//           cursor: not-allowed;
+//         }
+//       }
+
+      
+//     }
+//   }
+  

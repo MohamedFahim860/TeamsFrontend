@@ -29,7 +29,7 @@
         <!-- Buttons for confirming or canceling edit -->
         <div *ngIf="isEditingMessage && selectedMessage === message" class="edit-buttons-container">
           <button class="icon-button" (click)="confirmEdit()"><i class="fas fa-check"></i></button>
-          <button class="icon-button" (click)="cancelEdit()"><i class="fas fa-times"></i></button>
+          <button class="icon-button" (click)="cancelEdit(message)"><i class="fas fa-times"></i></button>
         </div>
         
       </div>

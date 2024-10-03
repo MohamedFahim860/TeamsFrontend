@@ -1,0 +1,128 @@
+<div class="signup-container">
+    <div class="signup-card">
+      <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+        <h1>Sign Up</h1>
+        
+        <div class="full-name-div">
+            <div class="form-group">
+                <!-- <label for="firstName">First Name:</label> -->
+                <input type="text" id="firstName" formControlName="firstName" placeholder="First Name" />
+                <div *ngIf="signupForm.get('firstName')?.hasError('minlength')" class="error">
+                  First name must be at least 2 characters long.
+                </div>
+            </div>
+    
+            <div class="form-group">
+                <!-- <label for="lastName">Last Name:</label> -->
+                <input type="text" id="lastName" formControlName="lastName" placeholder="Last Name" />
+                <div *ngIf="signupForm.get('lastName')?.hasError('minlength')" class="error">
+                  Last name must be at least 3 characters long.
+                </div>
+            </div>
+        </div>
+
+
+        <div class="form-group">
+          <!-- <label for="email">Email:</label> -->
+          <input type="email" id="email" formControlName="email" placeholder="Email" />
+          <div *ngIf="signupForm.get('email')?.hasError('emailTaken')" class="error">
+            Email already exists.
+          </div>
+          <div *ngIf="signupForm.get('email')?.hasError('email') && signupForm.get('email')?.touched" class="error">
+            Please enter a valid email
+          </div>
+        </div>
+  
+        <div class="form-group">
+          <!-- <label for="username">Username:</label> -->
+          <input type="text" id="username" formControlName="username" placeholder="Username" />
+          <div *ngIf="signupForm.get('username')?.hasError('usernameTaken')" class="error">
+            Username already exists.
+          </div>
+          <div *ngIf="signupForm.get('username')?.hasError('minlength')" class="error">
+            Username must be at least 3 characters long.
+          </div>
+        </div>
+  
+        <div class="form-group">
+          <!-- <label for="password">Password:</label> -->
+          <input type="password" id="password" formControlName="password" placeholder="New Password" />
+          <div *ngIf="signupForm.get('password')?.hasError('minlength')" class="error">
+            Password must be at least 8 characters long.
+          </div>
+        </div>
+  
+        <div class="form-group">
+          <!-- <label for="confirmPassword">Confirm Password:</label> -->
+          <input type="password" id="confirmPassword" formControlName="confirmPassword" placeholder="Confirm Password" />
+          <div *ngIf="signupForm.hasError('notMatching')" class="error">
+            Passwords do not match.
+          </div>
+        </div>
+  
+        <button type="submit" [disabled]="signupForm.invalid">Sign Up</button>
+
+        <p class="already-account">
+          Already have an account? <a [routerLink]="['/login']">Login</a>
+        </p>
+      </form>
+    </div>
+  </div>
+  
+
+
+
+
+
+
+
+
+
+
+
+<!-- <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+    <div>
+        <label for="email">Email: </label>
+        <input type="email" id="email" formControlName="email">
+        <div *ngIf = "signupForm.get('email')?.hasError('emailTaken')">
+            Email already exists.
+        </div>
+        <div *ngIf="signupForm.get('email')?.hasError('email') && signupForm.get('email')?.touched">
+            Please enter a valid email
+        </div>
+    </div>
+
+    <div>
+        <label for="username">Username: </label>
+        <input type="text" id="username" formControlName="username">
+        <div *ngIf="signupForm.get('username')?.hasError('usernameTaken')">
+            Username already exists.
+        </div>
+        <div *ngIf="signupForm.get('username')?.hasError('minlength')">
+            Username must be at least 3 characters long.
+        </div>
+    </div>
+
+    <div>
+        <label for="password">Password: </label>
+        <input type="password" id="password" formControlName="passwrod">
+        <div *ngIf="signupForm.get('password')?.hasError('minlength')">
+            Password must be at least 8 characters long.
+        </div>
+    </div>
+
+    <div>
+        <label for="confirmPassword">Confirm Password: </label>
+        <input type="password" id="confirmPassword" formControlName="confirmPassword">
+        <div *ngIf="signupForm.hasError('notMatching')">
+            Password do not match.
+        </div>
+    </div>
+
+    <button type="submit">
+        Sign Up
+    </button>
+</form>
+
+
+   -->

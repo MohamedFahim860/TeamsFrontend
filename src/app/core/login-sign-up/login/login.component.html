@@ -36,6 +36,11 @@
       </div>
   
       <button type="submit" [disabled]="loginForm.invalid">Login</button>
+      <div class="signup-link">
+        <p>Don't have an account?</p>
+        <button type="button" (click)="navigateToSignup()">Sign Up</button>
+      </div>
+      
     </form>
   </div>
 </div>

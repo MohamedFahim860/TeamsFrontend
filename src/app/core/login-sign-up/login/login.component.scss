@@ -38,7 +38,7 @@
         }
   
         input {
-          width: 100%;
+          width: 92%;
           padding: 0.8rem;
           border: 1px solid #ccc;
           border-radius: 5px;
@@ -53,17 +53,39 @@
       }
   
       button {
-        padding: 0.8rem;
+        padding: 0.6rem 1.5rem; /* Smaller padding */
         background-color: #1e90ff;
         color: white;
         border: none;
-        border-radius: 5px;
-        font-size: 16px;
+        border-radius: 8px; /* Slightly larger border-radius for modern look */
+        font-size: 15px; /* Slightly smaller font */
+        font-weight: bold; /* Make text bold for emphasis */
         cursor: pointer;
         transition: background-color 0.3s ease;
+        box-shadow: 0 4px 10px rgba(30, 144, 255, 0.2); /* Add shadow for depth */
+        text-align: center;
+        margin-top: 1rem; /* Add margin above button */
   
         &:hover {
           background-color: #187bcd;
+          box-shadow: 0 6px 15px rgba(30, 144, 255, 0.3); /* Slightly more shadow on hover */
+        }
+  
+        &:disabled {
+          background-color: #ccc;
+          cursor: not-allowed;
+        }
+      }
+
+      .signup-link{
+        display: flex;
+        flex-direction: column;
+        button {
+          background-color: #0aa71f;
+        }
+        p{
+          margin-top: 35px;
+          margin-bottom: 0px;
         }
       }
     }

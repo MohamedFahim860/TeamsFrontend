@@ -20,14 +20,31 @@ export class UserService {
   //     catchError(this.exceptionHandler.handleError)
   //   );
 
+
+  addUser(user: User): Observable<any> {
+    const url = `${this.baseUrl}/users/add`;
+
+    return this.http.post(url, user);
+  }
+
   getUsers(): Observable<User[]> {
-    const url = `${this.baseUrl}/users`;  // Endpoint for GetUsers
-    return this.http.get<User[]>(url);  // Make the HTTP GET request
+    const url = `${this.baseUrl}/users`;
+    return this.http.get<User[]>(url);  
   }
 
   getCurrentUsers(): Observable<User> {
     const url = `${this.baseUrl}/users/current`;  
     return this.http.get<User>(url);
+  }
+
+  checkEmailExists(email: string): Observable<boolean> {
+    const url = `${this.baseUrl}/users/check-email`;
+    return this.http.post<boolean>(url, { email });
+  }
+
+  checkUsernameExists(username: string): Observable<boolean> {
+    const url = `${this.baseUrl}/users/check-username`;
+    return this.http.post<boolean>(url, { username });
   }
   
 }
