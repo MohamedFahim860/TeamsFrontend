@@ -7,6 +7,7 @@ import { MessageService } from '../../../shared/services/message.service';
 import { UserService } from '../../../shared/services/user.service';
 import { Message } from '../../../shared/models/message.model';
 import { timeout } from 'rxjs';
+import { ChatService } from '../../../shared/services/real-time-services/realTime.chat.service';
 
 @Component({
   selector: 'app-chat-area',
@@ -25,7 +26,8 @@ export class ChatAreaComponent implements OnInit {
     private chatcomponentService: ChatComponentService,
     private messageService: MessageService,
     private cdr: ChangeDetectorRef,
-    private userService: UserService
+    private userService: UserService,
+    private chatService: ChatService
   ){}
 
   chatName: string = "";
@@ -64,6 +66,12 @@ export class ChatAreaComponent implements OnInit {
     })
 
     this.getCurrentUser();
+
+    this.chatService.currentMessage$.subscribe((message) => {
+      if (message) {
+        this.messages.push(message);
+      }
+    });
 
 
 
@@ -118,6 +126,10 @@ export class ChatAreaComponent implements OnInit {
         console.error('Error sending message:', error);
       }
     );
+
+    this.chatService.sendMessage(this.newMessage);
+
+
   }
 
   getMessages(receiverId: number): void {

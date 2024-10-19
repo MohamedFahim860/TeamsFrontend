@@ -11,6 +11,7 @@ export class ChatService {
   private hubConnection!: HubConnection;
   private messagesSource = new BehaviorSubject<Message | null>(null);
   currentMessage$ = this.messagesSource.asObservable();
+  private baseUrl = 'https://localhost:7195/api';
 
   constructor() {
     this.startConnection();
@@ -18,7 +19,7 @@ export class ChatService {
 
   private startConnection() {
     this.hubConnection = new HubConnectionBuilder()
-      .withUrl('https://your-api-url/chatHub') // Replace with your API URL
+      .withUrl(`${this.baseUrl}/Messages/send/chathub`)//this chatHub is the path specified inside the app.MapHub<ChatHub>("chathub")
       .build();
 
     this.hubConnection
